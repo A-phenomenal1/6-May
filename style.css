@@ -1,0 +1,59 @@
+html, body, section, div {
+	height: 100vh;
+}
+
+body {
+	/*color: #fff;*/
+	font-family: sans-serif;
+}
+h1 {
+	font-size: 1.75rem;
+	margin: 0 0 0.75rem 0;
+}
+.base {
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden;
+}
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.container{
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	background: #23c9c9;
+	overflow: hidden;
+}
+
+.heart{
+	position: absolute;
+	width: 40px;
+	z-index: 2;
+	height: 40px;
+	background-color: indianred;
+	transform: rotate(45deg);
+	box-shadow: 20px 20px 40px rgba(0,0,0,0.2);
+}
+.heart2{
+	background: #1090f6;
+	z-index: 2;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	transform: rotate(45deg);
+	box-shadow: 20px 20px 40px rgba(0,0,0,0.2);
+}
+.fireworks{
+	top: 0;
+	position: absolute;
+	z-index: 1;
+}

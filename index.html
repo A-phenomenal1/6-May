@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--	<link rel="stylesheet" href="colors.css">-->
+	<link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	
+	<title>ONLY</title>
+</head>
+<body>
+	<!--	<div class="base">-->
+	<!--		<div class="blue">-->
+	<!--			Blue-->
+	<!--			-->
+	<!--		</div>-->
+	<!--		<div class="pink">-->
+	<!--			Pink-->
+	<!--			&lt;!&ndash;<canvas class="fireworks">&ndash;&gt;-->
+	<!--			&lt;!&ndash;</canvas>&ndash;&gt;-->
+	<!--		</div>-->
+	<!--	</div>-->
+	<div class="container">
+		<div class="heart" onclick="remove(this)">
+		</div>
+	</div>
+	<div class="container2">
+		<div class="heart2" onmousedown="remove(this)">
+		</div>
+	</div>
+	<canvas class="fireworks">
+	</canvas>
+	<script src="anime.min.js"></script>
+	<script>
+		const container = document.querySelector('.container');
+		for (let i = 1; i <= 40; i++) {
+			const hearts = document.createElement('div');
+			hearts.classList.add('heart');
+			container.appendChild(hearts);
+		}
+
+		function animateHearts() {
+			anime({
+				targets: '.heart',
+				translateX: function () {
+					return anime.random(-600, 550);
+				},
+				translateY: function () {
+					return anime.random(100, 600);
+				},
+				rotate: 45,
+				scale: function () {
+					return anime.random(0.8, 1)
+				},
+				easing: 'easeInOutBack',
+				duration: 3000,
+				delay: anime.stagger(10,4),
+				// complete: animateHearts	,
+
+			}).finished.then(animateHearts)
+		}
+
+		animateHearts()
+	</script>
+	<script>
+		const container2 = document.querySelector('.container2');
+		for (let i = 1; i <= 40; i++) {
+			const hearts2 = document.createElement('div');
+			hearts2.classList.add('heart2');
+			container2.appendChild(hearts2);
+		}
+
+		function animateHearts2() {
+			anime({
+				targets: '.heart2',
+				translateX: function () {
+					return anime.random(100, 1250);
+				},
+				translateY: function () {
+					return anime.random(100, 600);
+				},
+				rotate: 45,
+				scale: function () {
+					return anime.random(0.8, 1)
+				},
+				easing: 'easeInOutBack',
+				duration: 3000,
+				delay: anime.stagger(10,4),
+				// complete: animateHearts	,
+
+			}).finished.then(animateHearts2)
+		}
+
+		animateHearts2()
+	</script>
+	<script src='jg_helper.js'></script>
+	<script src="blast.js"></script>
+	<script>
+	function remove(el){
+		let element = el;
+		el.remove();
+	}
+	</script>
+</body>
+</html>
