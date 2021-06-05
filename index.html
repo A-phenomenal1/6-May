@@ -1,104 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<!--	<link rel="stylesheet" href="colors.css">-->
-	<link rel="stylesheet" href="style.css">
-	<meta charset="UTF-8">
-	
-	<title>ONLY</title>
-</head>
-<body>
-	<!--	<div class="base">-->
-	<!--		<div class="blue">-->
-	<!--			Blue-->
-	<!--			-->
-	<!--		</div>-->
-	<!--		<div class="pink">-->
-	<!--			Pink-->
-	<!--			&lt;!&ndash;<canvas class="fireworks">&ndash;&gt;-->
-	<!--			&lt;!&ndash;</canvas>&ndash;&gt;-->
-	<!--		</div>-->
-	<!--	</div>-->
-	<div class="container">
-		<div class="heart" onclick="remove(this)">
-		</div>
-	</div>
-	<div class="container2">
-		<div class="heart2" onmousedown="remove(this)">
-		</div>
-	</div>
-	<canvas class="fireworks">
-	</canvas>
-	<script src="anime.min.js"></script>
-	<script>
-		const container = document.querySelector('.container');
-		for (let i = 1; i <= 40; i++) {
-			const hearts = document.createElement('div');
-			hearts.classList.add('heart');
-			container.appendChild(hearts);
-		}
+  <head>
+    <!--	<link rel="stylesheet" href="colors.css">-->
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
 
-		function animateHearts() {
-			anime({
-				targets: '.heart',
-				translateX: function () {
-					return anime.random(-600, 550);
-				},
-				translateY: function () {
-					return anime.random(100, 600);
-				},
-				rotate: 45,
-				scale: function () {
-					return anime.random(0.8, 1)
-				},
-				easing: 'easeInOutBack',
-				duration: 3000,
-				delay: anime.stagger(10,4),
-				// complete: animateHearts	,
+    <title>ONLY</title>
+  </head>
+  <body>
+    <!--	<div class="base">-->
+    <!--		<div class="blue">-->
+    <!--			Blue-->
+    <!--			-->
+    <!--		</div>-->
+    <!--		<div class="pink">-->
+    <!--			Pink-->
+    <!--			&lt;!&ndash;<canvas class="fireworks">&ndash;&gt;-->
+    <!--			&lt;!&ndash;</canvas>&ndash;&gt;-->
+    <!--		</div>-->
+    <!--	</div>-->
+    <div class="container">
+      <div class="heart" onclick="remove(this)">
+        <audio onended="onMusicEnd(this)">
+          <source src="./music/iphone_6-30.mp3" type="audio/mpeg" />
+        </audio>
+      </div>
+    </div>
+    <div class="container2">
+      <div class="heart2" onmousedown="remove(this)">
+        <audio onended="onMusicEnd(this)">
+          <source src="./music/krishna_flute_2014-53.mp3" type="audio/mpeg" />
+        </audio>
+      </div>
+    </div>
+    <canvas class="fireworks"> </canvas>
+    <script src="anime.min.js"></script>
+    <script>
+      const musicFiles = ["shree_krishn-146.mp3", "krishna_flute_2014-53.mp3"];
+    </script>
+    <script>
+      const container = document.querySelector(".container");
+      for (let i = 1; i <= 40; i++) {
+        const hearts = document.createElement("div");
+        hearts.classList.add("heart");
+        const audios = document.createElement("audio");
+        audios.setAttribute("id", "my-audio");
+        // audios.setAttribute("onended", "onMusicEnd()")
+        const sources = document.createElement("source");
+        sources.setAttribute("src", `./music/${musicFiles[i % 2]}`);
+        sources.setAttribute("type", "audio/mpeg");
+        audios.appendChild(sources);
+        hearts.appendChild(audios);
+        hearts.onclick = function () {
+          remove(this);
+        };
+        container.appendChild(hearts);
+      }
 
-			}).finished.then(animateHearts)
-		}
+      function animateHearts() {
+        console.log("Hello animeHearts");
+        anime({
+          targets: ".heart",
+          translateX: function () {
+            return anime.random(-600, 550);
+          },
+          translateY: function () {
+            return anime.random(100, 600);
+          },
+          rotate: 45,
+          scale: function () {
+            return anime.random(0.8, 1);
+          },
+          easing: "easeInOutBack",
+          duration: 3000,
+          delay: anime.stagger(10, 4),
+          // complete: animateHearts	,
+        });
+      }
 
-		animateHearts()
-	</script>
-	<script>
-		const container2 = document.querySelector('.container2');
-		for (let i = 1; i <= 40; i++) {
-			const hearts2 = document.createElement('div');
-			hearts2.classList.add('heart2');
-			container2.appendChild(hearts2);
-		}
+      animateHearts();
+    </script>
+    <script>
+      const container2 = document.querySelector(".container2");
+      for (let i = 1; i <= 40; i++) {
+        const hearts2 = document.createElement("div");
+        hearts2.classList.add("heart2");
+        const audios = document.createElement("audio");
+        audios.setAttribute("id", "my-audio");
+        // audios.setAttribute("onended", "onMusicEnd()")
+        const sources = document.createElement("source");
+        sources.setAttribute("src", `./music/${musicFiles[i % 2]}`);
+        sources.setAttribute("type", "audio/mpeg");
+        audios.appendChild(sources);
+        hearts2.appendChild(audios);
+        hearts2.onclick = function () {
+          remove(this);
+        };
+        container2.appendChild(hearts2);
+      }
 
-		function animateHearts2() {
-			anime({
-				targets: '.heart2',
-				translateX: function () {
-					return anime.random(100, 1250);
-				},
-				translateY: function () {
-					return anime.random(100, 600);
-				},
-				rotate: 45,
-				scale: function () {
-					return anime.random(0.8, 1)
-				},
-				easing: 'easeInOutBack',
-				duration: 3000,
-				delay: anime.stagger(10,4),
-				// complete: animateHearts	,
+      function animateHearts2() {
+        anime({
+          targets: ".heart2",
+          translateX: function () {
+            return anime.random(100, 1250);
+          },
+          translateY: function () {
+            return anime.random(100, 600);
+          },
+          rotate: 45,
+          scale: function () {
+            return anime.random(0.8, 1);
+          },
+          easing: "easeInOutBack",
+          duration: 3000,
+          delay: anime.stagger(10, 4),
+          // complete: animateHearts	,
+        });
+      }
 
-			}).finished.then(animateHearts2)
-		}
+      animateHearts2();
+    </script>
+    <script src="jg_helper.js"></script>
+    <script src="blast.js"></script>
+    <script>
+      function remove(el) {
+        console.log("this: ", el);
+        let element = el.querySelector("#my-audio");
+        console.log("element: ", element);
+        let isPlaying = element.paused;
+        let sounds = document.getElementsByTagName("audio");
+        for (i = 0; i < sounds.length; i++) sounds[i].pause();
+        let icons = document.querySelectorAll("div.heart, div.heart2");
+        // console.log("icons: ", icons);
+        for (i = 0; i < icons.length; i++) {
+          // console.log(icons[i].childNodes);
+          if (icons[i].childNodes[1] !== undefined)
+            icons[i].removeChild(icons[i].childNodes[1]);
+        }
+        console.log("isPlaying:", isPlaying);
+        if (isPlaying) {
+          let iconCont = document.createElement("div");
+          let img = document.createElement("img");
+          img.setAttribute(
+            "src",
+            "https://img.icons8.com/flat-round/40/000000/pause--v1.png"
+          );
+          iconCont.appendChild(img);
+          el.appendChild(iconCont);
+        } else {
+          el.removeChild(el.childNodes[1]);
+        }
+        return isPlaying ? element.play() : element.pause();
+        // animateHearts();
+      }
 
-		animateHearts2()
-	</script>
-	<script src='jg_helper.js'></script>
-	<script src="blast.js"></script>
-	<script>
-	function remove(el){
-		let element = el;
-		el.remove();
-	}
-	</script>
-</body>
+      function onMusicEnd(el) {
+        alert("element music: ");
+      }
+    </script>
+  </body>
 </html>
